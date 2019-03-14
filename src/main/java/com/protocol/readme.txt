@@ -1,0 +1,2 @@
+#自定义消息格式
+HEADcontent-length:xxxHEADBODYxxxxxxxxxxxBODY
