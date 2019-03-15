@@ -15,5 +15,20 @@
             <artifactId>netty-all</artifactId>
             <version>5.0.0.Alpha2</version>
         </dependency>
+        <!--接收处理工具-->
+        <!-- https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-river -->
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling-river</artifactId>
+            <version>2.0.5.Final</version>
+        </dependency>
+        <!--序列化处理工具-->
+        <!-- https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-serial -->
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling-serial</artifactId>
+            <version>2.0.5.Final</version>
+            <!--开始对象从客户端传输不到服务端，原因在于将scope设置为了test-->
+        </dependency>
     </dependencies>
 </project>
