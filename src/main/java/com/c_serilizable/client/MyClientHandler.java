@@ -38,15 +38,16 @@ public class MyClientHandler extends ChannelHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("与服务器端的连接建立成功，向服务端传送对象");
-
-        String attachment = "这是一个附件信息：它很大，在传输时需要压缩发送：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        byte[] target = GzipUtils.zip(attachment.getBytes("UTF-8"));
-        UserInfo userInfo = new UserInfo("张三", 18, "男",
-                "zhangsan@163.com", "西安市", target);
-
-        //向服务器发送对象
-        ctx.writeAndFlush(userInfo);
+        //初次连接成功时，可以进行一些初始化，或向服务端发送数据
+//        System.out.println("与服务器端的连接建立成功，向服务端传送对象");
+//
+//        String attachment = "这是一个附件信息：它很大，在传输时需要压缩发送：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+//        byte[] target = GzipUtils.zip(attachment.getBytes("UTF-8"));
+//        UserInfo userInfo = new UserInfo("张三", 18, "男",
+//                "zhangsan@163.com", "西安市", target);
+//
+//        //向服务器发送对象
+//        ctx.writeAndFlush(userInfo);
     }
 
 }

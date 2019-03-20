@@ -1,8 +1,6 @@
-package com.c_serilizable.client;
+package com.e_heartbeat.client;
 
-import com.c_serilizable.GzipUtils;
-import com.c_serilizable.MarshallingCodeFactory;
-import com.c_serilizable.UserInfo;
+import com.e_heartbeat.MarshallingCodeFactory;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandler;
@@ -13,16 +11,14 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-import java.util.concurrent.TimeUnit;
 
-public class SerializableClient {
+public class HeartBeatClient {
     private Bootstrap bootstrap = null;
 
     private EventLoopGroup group = null;
 
-    public SerializableClient() {
+    public HeartBeatClient() {
         init();
     }
 
@@ -67,32 +63,13 @@ public class SerializableClient {
     }
 
     public static void main(String[] args) {
-        SerializableClient client = null;
+        HeartBeatClient client = null;
         ChannelFuture future = null;
         try {
-            client = new SerializableClient();
-            future = client.doRequest("localhost", 8080, new MyClientHandler());
+            client = new HeartBeatClient();
+            future = client.doRequest("localhost", 8080, new HeartBeatClientHandler());
 
-            System.out.println("与服务器端的连接建立成功，向服务端传送对象");
-
-            for (int i = 0; i < 3; i++) {
-                String attachment = "这是一个附件信息：它很大，在传输时需要压缩发送：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-                byte[] target = GzipUtils.zip(attachment.getBytes("UTF-8"));
-                UserInfo userInfo = new UserInfo("张三", 18, "男",
-                        "zhangsan@163.com", "西安市", target);
-
-                //向服务器发送对象
-                future.channel().writeAndFlush(userInfo);
-                TimeUnit.SECONDS.sleep(2);
-            }
-
-            //1s后关闭客户端
-            /*TimeUnit.SECONDS.sleep(1);
-            future.addListener(ChannelFutureListener.CLOSE);
-            */
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();

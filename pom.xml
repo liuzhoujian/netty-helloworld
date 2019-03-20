@@ -30,5 +30,13 @@
             <version>2.0.5.Final</version>
             <!--开始对象从客户端传输不到服务端，原因在于将scope设置为了test-->
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.fusesource/sigar
+            在sigar官网下载sigarz.zip获取dll文件放入JDK/bin目录下
+        系统信息-->
+        <dependency>
+            <groupId>org.fusesource</groupId>
+            <artifactId>sigar</artifactId>
+            <version>1.6.4</version>
+        </dependency>
     </dependencies>
 </project>
